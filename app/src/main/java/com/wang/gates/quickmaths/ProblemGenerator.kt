@@ -58,7 +58,6 @@ class ProblemGenerator {
         checkIfDifficultyIsValid(difficulty)
         val operationString = operationToStringForm(operation)
         val operands = getOperands(difficulty, operationString)
-        Log.d(">>>", "" + operands)
         return "${operands[0]}$operationString${operands[1]}"
     }
 
@@ -131,14 +130,14 @@ class ProblemGenerator {
                 operands.add(first)
             }
             MEDIUM -> {
-                var first = getRandomNumber(2)
+                var first = getRandomNumber(1) * getRandomNumber(1)
                 var second = getRandomNumber(1)
                 operands.add(first*second)
-                operands.add(first)
+                operands.add(second)
             }
             HARD ->{
                 var first = getRandomNumber(2)
-                var second = getRandomNumber(2)
+                var second = getRandomNumber(1)
                 operands.add(first*second)
                 operands.add(first)
             }
@@ -185,10 +184,12 @@ class ProblemGenerator {
     }
 
     //N is the number of digits
+    //the number returned cannot be one
     private fun getRandomNumber(N : Int) : Int {
         val maxValue = Math.pow(10.0, N.toDouble()).toInt()
         val minValue = Math.pow(10.0, (N-1).toDouble()).toInt()
-        return Random.nextInt(minValue, maxValue)
+        val returnVal = Random.nextInt(minValue, maxValue)
+        if (returnVal==1) return getRandomNumber(N) else return returnVal
     }
 
 }

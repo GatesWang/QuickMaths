@@ -3,15 +3,20 @@ package com.wang.gates.quickmaths
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
+import android.util.Log
+import android.util.TypedValue
+import android.view.Menu
+import android.view.MenuItem
 import android.view.MotionEvent
 import android.view.View
+import android.widget.TextView
 
 class DrawView(context: Context, attrs: AttributeSet) : View(context, attrs) {
     private var mPaint = Paint()
     private var mPath = Path()
     private var generator = ProblemGenerator()
     private var operation = ProblemGenerator.RANDOM_OPERATION
-    private var difficulty = ProblemGenerator.HARD
+    private var difficulty = ProblemGenerator.EASY
     private var problem = generator.getProblem(operation,difficulty)
     private var problemParts = generator.getProblemParts(problem)
 
@@ -30,8 +35,9 @@ class DrawView(context: Context, attrs: AttributeSet) : View(context, attrs) {
             isAntiAlias = true
             textAlign = Paint.Align.CENTER
         }
-
         setTextSize(300)
+        setOperation(ProblemGenerator.RANDOM_OPERATION)
+        setDifficulty(ProblemGenerator.EASY)
     }
 
     private fun setTextSize(desiredWidth : Int){

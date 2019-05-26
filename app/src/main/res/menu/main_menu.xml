@@ -4,7 +4,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
             android:id="@+id/operation"
-            android:title="Operation"
+            android:title="@string/operation"
             app:showAsAction="ifRoom">
         <menu
                 xmlns:android="http://schemas.android.com/apk/res/android"
@@ -28,7 +28,7 @@
     </item>
     <item
             android:id="@+id/difficulty"
-            android:title="Difficulty"
+            android:title="@string/difficulty"
             app:showAsAction="ifRoom">
         <menu
                 xmlns:android="http://schemas.android.com/apk/res/android"

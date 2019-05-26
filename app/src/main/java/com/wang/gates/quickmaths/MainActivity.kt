@@ -1,19 +1,23 @@
 package com.wang.gates.quickmaths
 
 import android.content.DialogInterface
+import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.util.Log
+import android.util.TypedValue
 import android.view.Menu
 import android.widget.LinearLayout
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
-import android.view.MenuInflater
 import android.view.MenuItem
+import android.view.View
 
 
 class MainActivity : AppCompatActivity() {
+    var mainMenu : Menu? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -40,7 +44,10 @@ class MainActivity : AppCompatActivity() {
         textView.textSize = 100f
         layout.addView(textView)
         builder.setView(layout)
-        builder.setPositiveButton("Ok", DialogInterface.OnClickListener{dialog, _ ->
+        builder.setNegativeButton("Try Again", DialogInterface.OnClickListener{dialog, _ ->
+            dialog.dismiss()
+        })
+        builder.setPositiveButton("Next Problem", DialogInterface.OnClickListener{dialog, _ ->
             dialog.dismiss()
             draw_view.newProblem()
         })
@@ -49,6 +56,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
+        mainMenu = menu
         return true
     }
 
@@ -56,27 +64,35 @@ class MainActivity : AppCompatActivity() {
         when(item!!.itemId){
             R.id.add -> {
                 draw_view.setOperation(ProblemGenerator.ADD)
+                mainMenu!!.findItem(R.id.operation).title = "add"
             }
             R.id.subtract -> {
                 draw_view.setOperation(ProblemGenerator.SUBTRACT)
+                mainMenu!!.findItem(R.id.operation).title = "subtract"
             }
             R.id.multiply -> {
                 draw_view.setOperation(ProblemGenerator.MULTIPLY)
+                mainMenu!!.findItem(R.id.operation).title = "multiply"
             }
             R.id.divide -> {
                 draw_view.setOperation(ProblemGenerator.DIVIDE)
+                mainMenu!!.findItem(R.id.operation).title = "divide"
             }
             R.id.random -> {
                 draw_view.setOperation(ProblemGenerator.RANDOM_OPERATION)
+                mainMenu!!.findItem(R.id.operation).title = "random"
             }
             R.id.easy -> {
                 draw_view.setDifficulty(ProblemGenerator.EASY)
+                mainMenu!!.findItem(R.id.difficulty).title = "easy"
             }
             R.id.medium -> {
                 draw_view.setDifficulty(ProblemGenerator.MEDIUM)
+                mainMenu!!.findItem(R.id.difficulty).title = "medium"
             }
             R.id.hard -> {
                 draw_view.setDifficulty(ProblemGenerator.HARD)
+                mainMenu!!.findItem(R.id.difficulty).title = "hard"
             }
         }
         return super.onOptionsItemSelected(item)
