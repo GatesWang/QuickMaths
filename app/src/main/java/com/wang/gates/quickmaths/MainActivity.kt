@@ -1,26 +1,31 @@
 package com.wang.gates.quickmaths
 
+import android.content.Context
 import android.content.DialogInterface
-import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
-import android.util.Log
-import android.util.TypedValue
+import android.text.InputType
 import android.view.Menu
 import android.widget.LinearLayout
-import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
 import android.view.MenuItem
+import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.Toast
+import android.view.inputmethod.InputMethodManager
 import android.view.View
+import android.view.View.OnFocusChangeListener
 
 
 class MainActivity : AppCompatActivity() {
-    var mainMenu : Menu? = null
+    private var mainMenu : Menu? = null
+    private var scoreTracker : ScoreTracker? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        scoreTracker = ScoreTracker(this@MainActivity, score)
         setListeners()
     }
 
@@ -38,19 +43,39 @@ class MainActivity : AppCompatActivity() {
 
     private fun showAnswerDialog(answer : Int){
         val builder : AlertDialog.Builder  = AlertDialog.Builder(this@MainActivity)
+        builder.setTitle("Submit Answer")
         val layout = LinearLayout(this@MainActivity)
-        val textView = TextView(this@MainActivity)
-        textView.setText("" + answer)
-        textView.textSize = 100f
-        layout.addView(textView)
+        val input = EditText(this@MainActivity)
+        input.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        input.inputType = InputType.TYPE_CLASS_NUMBER
+        input.setOnFocusChangeListener(object : OnFocusChangeListener {
+            override fun onFocusChange(v: View, hasFocus: Boolean) {
+                input.post(Runnable {
+                    val inputMethodManager =
+                        this@MainActivity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                    inputMethodManager.showSoftInput(input, InputMethodManager.SHOW_IMPLICIT)
+                })
+            }
+        })
+        input.requestFocus()
+        layout.addView(input)
         builder.setView(layout)
-        builder.setNegativeButton("Try Again", DialogInterface.OnClickListener{dialog, _ ->
+
+        builder.setPositiveButton("Submit", DialogInterface.OnClickListener{dialog, _ ->
+            dialog.dismiss()
+            if(input.text.toString().toInt().equals(answer)){
+                scoreTracker!!.increaseScore(draw_view.getDifficulty())
+                Toast.makeText(this@MainActivity, "correct", Toast.LENGTH_SHORT).show()
+                draw_view.newProblem()
+            }
+            else{
+                Toast.makeText(this@MainActivity, "incorrect", Toast.LENGTH_SHORT).show()
+            }
+        })
+        builder.setNeutralButton("Go back", DialogInterface.OnClickListener{dialog, _ ->
             dialog.dismiss()
         })
-        builder.setPositiveButton("Next Problem", DialogInterface.OnClickListener{dialog, _ ->
-            dialog.dismiss()
-            draw_view.newProblem()
-        })
+
         builder.show()
     }
 
@@ -97,5 +122,6 @@ class MainActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
 
 }

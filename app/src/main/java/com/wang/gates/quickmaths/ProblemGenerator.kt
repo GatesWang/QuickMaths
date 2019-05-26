@@ -130,16 +130,16 @@ class ProblemGenerator {
                 operands.add(first)
             }
             MEDIUM -> {
-                var first = getRandomNumber(1) * getRandomNumber(1)
+                var first = getRandomNumber(1) * getRandomNumber(1)* getRandomNumber(1)
                 var second = getRandomNumber(1)
                 operands.add(first*second)
                 operands.add(second)
             }
             HARD ->{
-                var first = getRandomNumber(2)
+                var first = getRandomNumber(2) * getRandomNumber(1)
                 var second = getRandomNumber(1)
                 operands.add(first*second)
-                operands.add(first)
+                operands.add(second)
             }
         }
         return operands

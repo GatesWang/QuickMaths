@@ -52,6 +52,14 @@ class DrawView(context: Context, attrs: AttributeSet) : View(context, attrs) {
         mPaint.setTextSize(desiredTextSize)
     }
 
+    fun getOperation() : Int{
+        return operation
+    }
+
+    fun getDifficulty() : Int{
+        return difficulty
+    }
+
     fun setOperation(newOperation : Int){
         operation = newOperation
         newProblem()
