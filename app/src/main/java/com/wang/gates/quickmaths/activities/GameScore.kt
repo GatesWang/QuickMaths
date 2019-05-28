@@ -6,9 +6,6 @@ import android.os.Bundle
 import android.preference.PreferenceManager
 import com.wang.gates.quickmaths.R
 import com.wang.gates.quickmaths.classes.GameSettings
-import android.widget.TextView
-import android.view.LayoutInflater
-import android.content.Context
 import android.content.Intent
 import com.wang.gates.quickmaths.activities.modes.GameLocalPlayer
 import com.wang.gates.quickmaths.activities.modes.GameMultiplayer
@@ -37,6 +34,7 @@ class GameScore : AppCompatActivity() {
         fillViews()
         checkForNewHighScore()
         setButtonBehavior()
+        savePrefferedGameSettings()
     }
 
     private fun fillNullValues(){
@@ -67,6 +65,7 @@ class GameScore : AppCompatActivity() {
 
     private fun setButtonBehavior(){
         main_menu_button.setOnClickListener{
+            editor!!.putBoolean("playagain",false)
             finish()
         }
         play_again_button.setOnClickListener{
@@ -83,5 +82,12 @@ class GameScore : AppCompatActivity() {
             }
             finish()
         }
+    }
+
+    //for this particular mode save the game settings
+    private fun savePrefferedGameSettings(){
+        editor!!.putString(settings.getMode().toString() + "difficulty", settings.getDifficulty().toString())
+        editor!!.putString(settings.getMode().toString() + "timecontrol", settings.getTimeControl().toString())
+        editor!!.commit()
     }
 }

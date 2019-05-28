@@ -32,8 +32,7 @@
             android:text="@string/local_player"
             android:layout_marginLeft="@dimen/margin_horizontal"
             android:layout_marginRight="@dimen/margin_horizontal"
-            app:layout_constraintVertical_bias="0.833"
-            app:layout_constraintHorizontal_bias="0.0"/>
+            app:layout_constraintHorizontal_bias="0.0" app:layout_constraintVertical_bias="0.681"/>
 
     <!-- time -->
     <Spinner
@@ -48,8 +47,8 @@
             android:text="@string/local_player"
             android:layout_marginLeft="@dimen/margin_horizontal"
             android:layout_marginRight="@dimen/margin_horizontal"
-            app:layout_constraintVertical_bias="0.186"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintVertical_bias="0.285"
+            app:layout_constraintHorizontal_bias="1.0"
     />
 
     <Button
@@ -67,6 +66,7 @@
             android:layout_marginBottom="@dimen/margin_bottom"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintVertical_bias="0.991"
+            style="@style/ButtonStyle"
     />
 
 </android.support.constraint.ConstraintLayout>

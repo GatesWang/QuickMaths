@@ -1,8 +1,10 @@
 package com.wang.gates.quickmaths.activities.modes
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -14,14 +16,20 @@ import kotlinx.android.synthetic.main.game_single_player.*
 class GameSinglePlayer : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     private var timeControl : Int = GameSettings.ONE_MINUTE
     private var difficulty : Int = GameSettings.EASY
+    private val settings = GameSettings.getInstance()
+    private var preferences : SharedPreferences? = null
+    private var editor : SharedPreferences.Editor? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.game_single_player)
+        preferences = PreferenceManager.getDefaultSharedPreferences(this@GameSinglePlayer)
+        editor = preferences!!.edit()
 
         populateSpinners()
         setSpinnerBehavior()
         setButtonBehavior()
+        setSpinnerSelected()
     }
 
     private fun populateSpinners(){
@@ -47,9 +55,17 @@ class GameSinglePlayer : AppCompatActivity(), AdapterView.OnItemSelectedListener
         difficulty_spinner.onItemSelectedListener = this
         time_spinner.onItemSelectedListener = this
     }
+    private fun setSpinnerSelected(){
+        val preferredDifficulty = preferences!!.getString(settings.getMode().toString()+"difficulty",null)
+        val preferredTimeControl = preferences!!.getString(settings.getMode().toString()+"timecontrol",null)
+
+        if(preferredDifficulty!=null && preferredTimeControl!=null){
+            difficulty_spinner.setSelection(preferredDifficulty.toInt())
+            time_spinner.setSelection((preferredTimeControl.toInt()/60000)-1)
+        }
+    }
     private  fun setButtonBehavior(){
         start_game_button.setOnClickListener{
-            val settings = GameSettings.getInstance()
             settings.setMode(GameSettings.SINGLE_PLAYER)
             settings.setDifficulty(difficulty)
             settings.setTimeControl(timeControl)
@@ -90,5 +106,6 @@ class GameSinglePlayer : AppCompatActivity(), AdapterView.OnItemSelectedListener
     override fun onNothingSelected(parent: AdapterView<*>) {
 
     }
+
 
 }

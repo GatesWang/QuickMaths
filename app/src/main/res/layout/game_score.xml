@@ -75,7 +75,9 @@
             android:layout_marginLeft="@dimen/margin_horizontal"
             android:layout_marginRight="@dimen/margin_horizontal"
             android:layout_marginTop="520dp"
-            app:layout_constraintHorizontal_bias="0.0"/>
+            app:layout_constraintHorizontal_bias="0.0"
+            style="@style/ButtonStyle"
+    />
 
     <Button
             android:id="@+id/play_again_button"
@@ -89,5 +91,7 @@
             android:layout_marginLeft="@dimen/margin_horizontal"
             android:layout_marginRight="@dimen/margin_horizontal"
             app:layout_constraintHorizontal_bias="1.0"
-            android:layout_marginTop="575dp"/>
+            android:layout_marginTop="575dp"
+            style="@style/ButtonStyle"
+    />
 </android.support.constraint.ConstraintLayout>

@@ -3,8 +3,8 @@ package com.wang.gates.quickmaths.classes
 class GameSettings private constructor(){
 
     private var mode : Int? = null
-    private var difficulty : Int? = null
-    private var timeControl : Int? = null
+    private var difficulty = EASY
+    private var timeControl = ONE_MINUTE
 
     companion object{
         val SINGLE_PLAYER = 0
@@ -42,7 +42,7 @@ class GameSettings private constructor(){
     }
 
     fun getDifficulty() : Int {
-        return difficulty!!
+        return difficulty
     }
 
     fun getDifficultyString() : String{

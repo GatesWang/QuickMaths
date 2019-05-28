@@ -8,6 +8,7 @@ import com.wang.gates.quickmaths.R
 import com.wang.gates.quickmaths.activities.modes.GameLocalPlayer
 import com.wang.gates.quickmaths.activities.modes.GameMultiplayer
 import com.wang.gates.quickmaths.activities.modes.GameSinglePlayer
+import com.wang.gates.quickmaths.classes.MusicPlayer
 
 import kotlinx.android.synthetic.main.main_menu.*
 
@@ -18,7 +19,11 @@ class MainMenu : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_menu)
         setListeners()
+
+        val musicPlayer = MusicPlayer(this@MainMenu)
+        musicPlayer.playSong(R.raw.mansnothot)
     }
+
 
     private fun setListeners(){
         single_player.setOnClickListener{

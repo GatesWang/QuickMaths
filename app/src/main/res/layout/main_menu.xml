@@ -33,6 +33,7 @@
         android:text="@string/single_player"
         android:layout_marginLeft="@dimen/margin_horizontal"
         android:layout_marginRight="@dimen/margin_horizontal"
+        style="@style/ButtonStyle"
     />
 
     <Button
@@ -49,6 +50,7 @@
             android:layout_marginLeft="@dimen/margin_horizontal"
             android:layout_marginRight="@dimen/margin_horizontal"
             app:layout_constraintVertical_bias="1.0"
+            style="@style/ButtonStyle"
     />
 
     <Button
@@ -64,6 +66,7 @@
             android:layout_marginLeft="@dimen/margin_horizontal"
             android:layout_marginRight="@dimen/margin_horizontal"
             app:layout_constraintVertical_bias="1.0"
+            style="@style/ButtonStyle"
     />
 
     <Button
@@ -79,6 +82,7 @@
             android:layout_marginLeft="@dimen/margin_horizontal"
             android:layout_marginRight="@dimen/margin_horizontal"
             android:layout_marginBottom="@dimen/margin_bottom"
+            style="@style/ButtonStyle"
     />
 
 </android.support.constraint.ConstraintLayout>
