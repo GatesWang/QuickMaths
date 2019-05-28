@@ -1,20 +1,16 @@
-package com.wang.gates.quickmaths
+package com.wang.gates.quickmaths.custom_views
 
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
+import com.wang.gates.quickmaths.classes.Problem
 
 class DrawView(context: Context, attrs: AttributeSet) : View(context, attrs) {
     private var mPaint = Paint()
     private var mPath = Path()
-
-    private var generator = ProblemGenerator()
-    private var operation = ProblemGenerator.RANDOM_OPERATION
-    private var difficulty = ProblemGenerator.EASY
-    private var problem = generator.getProblem(operation,difficulty)
-    private var problemParts = generator.getProblemParts(problem)
+    private var problem : Problem? = null
 
     private var mCurX = 0f
     private var mCurY = 0f
@@ -32,8 +28,6 @@ class DrawView(context: Context, attrs: AttributeSet) : View(context, attrs) {
             textAlign = Paint.Align.CENTER
         }
         setTextSize(300)
-        setOperation(ProblemGenerator.RANDOM_OPERATION)
-        setDifficulty(ProblemGenerator.EASY)
     }
 
     private fun setTextSize(desiredWidth : Int){
@@ -41,36 +35,11 @@ class DrawView(context: Context, attrs: AttributeSet) : View(context, attrs) {
         // Get the bounds of the text, using our testTextSize.
         mPaint.setTextSize(testTextSize)
         val bounds = Rect()
-        mPaint.getTextBounds(problem, 0, problem.length, bounds)
+        mPaint.getTextBounds(problem.toString(), 0, problem.toString().length, bounds)
         // Calculate the desired size as a proportion of our testTextSize.
         val desiredTextSize = testTextSize * desiredWidth / bounds.width()
         // Set the paint for that size.
         mPaint.setTextSize(desiredTextSize)
-    }
-
-    fun getOperation() : Int{
-        return operation
-    }
-
-    fun getDifficulty() : Int{
-        return difficulty
-    }
-
-    fun setOperation(newOperation : Int){
-        operation = newOperation
-        newProblem()
-    }
-
-    fun setDifficulty(newDifficulty : Int){
-        difficulty = newDifficulty
-        newProblem()
-    }
-
-    fun newProblem(){
-        problem = generator.getProblem(operation,difficulty)
-        problemParts = generator.getProblemParts(problem)
-        clearPath()
-        invalidate()
     }
 
     fun clearPath() {
@@ -78,20 +47,23 @@ class DrawView(context: Context, attrs: AttributeSet) : View(context, attrs) {
         invalidate()
     }
 
-    fun getAnswer() : Int{
-        return generator.getProblemAnswer(problemParts)
+    fun setProblem(problem : Problem){
+        this.problem = problem
     }
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         canvas.drawPath(mPath, mPaint)
-        drawProblem(canvas)
+        if(problem != null){
+            drawProblem(canvas)
+        }
     }
 
     private fun drawProblem(canvas: Canvas){
+        val problemParts = problem!!.getProblemParts()
         if(problemParts[1].equals("/")){
             var startXPart = (0 + mPaint.textSize*.8).toFloat()
-            var startYPart = (0 + mPaint.textSize*2)
+            var startYPart = (0 + mPaint.textSize*2.5).toFloat()
             val spacing = 5
 
             canvas.drawText(problemParts[2], startXPart, startYPart, mPaint)
