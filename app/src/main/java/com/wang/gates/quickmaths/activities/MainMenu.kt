@@ -5,9 +5,9 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity;
 import com.wang.gates.quickmaths.classes.GameSettings
 import com.wang.gates.quickmaths.R
-import com.wang.gates.quickmaths.activities.modes.GameLocalPlayer
-import com.wang.gates.quickmaths.activities.modes.GameMultiplayer
-import com.wang.gates.quickmaths.activities.modes.GameSinglePlayer
+import com.wang.gates.quickmaths.activities.modes.BombMode
+import com.wang.gates.quickmaths.activities.modes.ChallengeFriendMode
+import com.wang.gates.quickmaths.activities.modes.TimerMode
 import com.wang.gates.quickmaths.classes.MusicPlayer
 
 import kotlinx.android.synthetic.main.main_menu.*
@@ -24,19 +24,18 @@ class MainMenu : AppCompatActivity() {
         musicPlayer.playSong(R.raw.mansnothot)
     }
 
-
     private fun setListeners(){
-        single_player.setOnClickListener{
-            gameSettings.setMode(GameSettings.SINGLE_PLAYER)
-            startActivity(Intent(this@MainMenu, GameSinglePlayer::class.java))
+        timer_mode.setOnClickListener{
+            gameSettings.setMode(GameSettings.TIMER_MODE)
+            startActivity(Intent(this@MainMenu, TimerMode::class.java))
         }
-        multiplayer.setOnClickListener{
-            gameSettings.setMode(GameSettings.MUlTIPLAYER)
-            startActivity(Intent(this@MainMenu, GameMultiplayer::class.java))
+        bomb_mode.setOnClickListener{
+            gameSettings.setMode(GameSettings.BOMB_MODE)
+            startActivity(Intent(this@MainMenu, BombMode::class.java))
         }
-        local_player.setOnClickListener{
-            gameSettings.setMode(GameSettings.LOCAL_PLAYER)
-            startActivity(Intent(this@MainMenu, GameLocalPlayer::class.java))
+        challenge_friend.setOnClickListener{
+            gameSettings.setMode(GameSettings.CHALLENGE_FRIEND_MODE)
+            startActivity(Intent(this@MainMenu, ChallengeFriendMode::class.java))
         }
         settings.setOnClickListener{
             startActivity(Intent(this@MainMenu, Settings::class.java))

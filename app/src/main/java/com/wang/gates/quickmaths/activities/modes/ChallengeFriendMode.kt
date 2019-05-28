@@ -5,12 +5,12 @@ import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import com.wang.gates.quickmaths.R
 
-class GameMultiplayer : AppCompatActivity() {
+class ChallengeFriendMode : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.game_multiplayer)
+        setContentView(R.layout.mode_sprint)
 
-        ContextCompat.getColor(this@GameMultiplayer, R.color.colorPrimary)
+        ContextCompat.getColor(this@ChallengeFriendMode, R.color.colorPrimary)
     }
 }

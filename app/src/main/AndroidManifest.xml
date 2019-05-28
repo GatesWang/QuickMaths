@@ -11,16 +11,15 @@
             android:theme="@style/AppTheme.NoActionBar">
         <activity android:name=".activities.GameScore">
         </activity>
-        <activity android:name=".activities.modes.GameLocalPlayer"/>
-        <activity android:name=".activities.modes.GameMultiplayer"/>
-        <activity android:name=".activities.modes.GameSinglePlayer"/>
+        <activity android:name=".activities.modes.BombMode"/>
+        <activity android:name=".activities.modes.ChallengeFriendMode"/>
+        <activity android:name=".activities.modes.TimerMode"/>
         <activity android:name=".activities.Game"/>
         <activity
                 android:name=".activities.MainMenu"
-                android:label="@string/title_activity_main">
+                android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>

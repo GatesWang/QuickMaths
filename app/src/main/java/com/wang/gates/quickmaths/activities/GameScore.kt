@@ -7,9 +7,9 @@ import android.preference.PreferenceManager
 import com.wang.gates.quickmaths.R
 import com.wang.gates.quickmaths.classes.GameSettings
 import android.content.Intent
-import com.wang.gates.quickmaths.activities.modes.GameLocalPlayer
-import com.wang.gates.quickmaths.activities.modes.GameMultiplayer
-import com.wang.gates.quickmaths.activities.modes.GameSinglePlayer
+import com.wang.gates.quickmaths.activities.modes.BombMode
+import com.wang.gates.quickmaths.activities.modes.ChallengeFriendMode
+import com.wang.gates.quickmaths.activities.modes.TimerMode
 import kotlinx.android.synthetic.main.game_score.*
 
 
@@ -34,7 +34,7 @@ class GameScore : AppCompatActivity() {
         fillViews()
         checkForNewHighScore()
         setButtonBehavior()
-        savePrefferedGameSettings()
+        savePreferredGameSettings()
     }
 
     private fun fillNullValues(){
@@ -70,14 +70,14 @@ class GameScore : AppCompatActivity() {
         }
         play_again_button.setOnClickListener{
             when(settings.getMode()){
-                GameSettings.SINGLE_PLAYER ->{
-                    startActivity(Intent(this@GameScore, GameSinglePlayer::class.java))
+                GameSettings.TIMER_MODE ->{
+                    startActivity(Intent(this@GameScore, TimerMode::class.java))
                 }
-                GameSettings.MUlTIPLAYER ->{
-                    startActivity(Intent(this@GameScore, GameMultiplayer::class.java))
+                GameSettings.BOMB_MODE ->{
+                    startActivity(Intent(this@GameScore, BombMode::class.java))
                 }
-                GameSettings.LOCAL_PLAYER ->{
-                    startActivity(Intent(this@GameScore, GameLocalPlayer::class.java))
+                GameSettings.CHALLENGE_FRIEND_MODE ->{
+                    startActivity(Intent(this@GameScore, ChallengeFriendMode::class.java))
                 }
             }
             finish()
@@ -85,7 +85,7 @@ class GameScore : AppCompatActivity() {
     }
 
     //for this particular mode save the game settings
-    private fun savePrefferedGameSettings(){
+    private fun savePreferredGameSettings(){
         editor!!.putString(settings.getMode().toString() + "difficulty", settings.getDifficulty().toString())
         editor!!.putString(settings.getMode().toString() + "timecontrol", settings.getTimeControl().toString())
         editor!!.commit()

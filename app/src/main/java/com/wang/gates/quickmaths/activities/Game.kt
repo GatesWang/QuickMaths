@@ -20,10 +20,12 @@ import android.view.KeyEvent
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView.OnEditorActionListener
 import android.content.DialogInterface
+import com.wang.gates.quickmaths.classes.GameSettings
 
 
 class Game : AppCompatActivity() {
     private var generator = ProblemGenerator.getInstance()
+    private var settings = GameSettings.getInstance()
     private var problem = generator.getProblem()
     private var gameState = GameState(this)
     private var input: EditText? = null
@@ -56,9 +58,16 @@ class Game : AppCompatActivity() {
                     Toast.makeText(this@Game, "correct", Toast.LENGTH_SHORT).show()
                     gameState.addToCount()
                     drawNewProblem()
+                    if(settings.getMode()==GameSettings.BOMB_MODE){
+                        gameState.stopTimer()
+                        gameState.startTimer()
+                    }
                 }
                 else{
                     Toast.makeText(this@Game, "incorrect", Toast.LENGTH_SHORT).show()
+                    if(settings.getMode()==GameSettings.BOMB_MODE) {
+                        finishGame()
+                    }
                 }
             }
             else{

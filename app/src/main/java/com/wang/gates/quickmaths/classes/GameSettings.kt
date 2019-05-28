@@ -7,17 +7,21 @@ class GameSettings private constructor(){
     private var timeControl = ONE_MINUTE
 
     companion object{
-        val SINGLE_PLAYER = 0
-        val MUlTIPLAYER = 1
-        val LOCAL_PLAYER = 2
+        val TIMER_MODE = 0
+        val BOMB_MODE = 1
+        val CHALLENGE_FRIEND_MODE = 2
 
         val EASY = 0
         val MEDIUM = 1
         val HARD = 2
 
-        val ONE_MINUTE = 60000
-        val TWO_MINUTES = 120000
-        val THREE_MINUTES = 180000
+        val ONE_MINUTE = 0
+        val TWO_MINUTES = 1
+        val THREE_MINUTES = 2
+
+        val FIVE_SECONDS = 3
+        val TEN_SECONDS = 4
+        val FIFTEEN_SECONDS = 5
 
         private val INSTANCE = GameSettings()
         fun getInstance() : GameSettings {
@@ -60,21 +64,32 @@ class GameSettings private constructor(){
     }
 
     fun getTimeControl() : Int {
-        return timeControl!!
+        return timeControl
     }
 
+    //returns "" for a time control that is not valid
     fun getTimeControlString() : String{
         when(timeControl){
             ONE_MINUTE ->{
-                return "1:00"
-            }
+            return "1:00"
+        }
             TWO_MINUTES ->{
                 return "2:00"
             }
-            else->{
+            THREE_MINUTES->{
                 return "3:00"
             }
+            FIVE_SECONDS ->{
+                return "0:05"
+            }
+            TEN_SECONDS ->{
+                return "0:10"
+            }
+            FIFTEEN_SECONDS->{
+                return "0:15"
+            }
         }
+        return ""
     }
 
     override fun toString(): String {
