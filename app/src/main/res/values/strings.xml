@@ -16,23 +16,10 @@
 
     <string name="to_be_added">To be added soon</string>
 
-
     <string-array name="difficulties">
-        <item>easy</item>
-        <item>medium</item>
-        <item>hard</item>
-    </string-array>
-
-    <string-array name="timer_time_controls">
-        <item>1 minute</item>
-        <item>2 minutes</item>
-        <item>3 minutes</item>
-    </string-array>
-
-    <string-array name="bomb_time_controls">
-        <item>5 seconds</item>
-        <item>10 seconds</item>
-        <item>15 seconds</item>
+        <item>Easy</item>
+        <item>Medium</item>
+        <item>Hard</item>
     </string-array>
 
 </resources>

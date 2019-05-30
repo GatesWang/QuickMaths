@@ -36,6 +36,7 @@ class Game : AppCompatActivity() {
         setContentView(R.layout.game)
         drawNewProblem()
         setListeners()
+        gameState.createTimer()
         gameState.startTimer()
     }
 
@@ -60,6 +61,8 @@ class Game : AppCompatActivity() {
                     drawNewProblem()
                     if(settings.getMode()==GameSettings.BOMB_MODE){
                         gameState.stopTimer()
+                        gameState.recalculateTime()
+                        gameState.createTimer()
                         gameState.startTimer()
                     }
                 }
@@ -116,7 +119,7 @@ class Game : AppCompatActivity() {
     }
 
     private fun setInputKeyBoard(){
-        input!!.setOnEditorActionListener(OnEditorActionListener { v, actionId, event ->
+        input!!.setOnEditorActionListener(OnEditorActionListener { _, actionId, event ->
             if (event != null && event.keyCode == KeyEvent.KEYCODE_ENTER || actionId == EditorInfo.IME_ACTION_DONE) {
                 dialog!!.getButton(DialogInterface.BUTTON_POSITIVE).performClick();
             }

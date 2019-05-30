@@ -5,9 +5,6 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity;
 import com.wang.gates.quickmaths.classes.GameSettings
 import com.wang.gates.quickmaths.R
-import com.wang.gates.quickmaths.activities.modes.BombMode
-import com.wang.gates.quickmaths.activities.modes.ChallengeFriendMode
-import com.wang.gates.quickmaths.activities.modes.TimerMode
 import com.wang.gates.quickmaths.classes.MusicPlayer
 
 import kotlinx.android.synthetic.main.main_menu.*
@@ -27,15 +24,14 @@ class MainMenu : AppCompatActivity() {
     private fun setListeners(){
         timer_mode.setOnClickListener{
             gameSettings.setMode(GameSettings.TIMER_MODE)
-            startActivity(Intent(this@MainMenu, TimerMode::class.java))
+            startActivity(Intent(this@MainMenu, GameStart::class.java))
         }
         bomb_mode.setOnClickListener{
             gameSettings.setMode(GameSettings.BOMB_MODE)
-            startActivity(Intent(this@MainMenu, BombMode::class.java))
+            startActivity(Intent(this@MainMenu, GameStart::class.java))
         }
         challenge_friend.setOnClickListener{
-            gameSettings.setMode(GameSettings.CHALLENGE_FRIEND_MODE)
-            startActivity(Intent(this@MainMenu, ChallengeFriendMode::class.java))
+            TODO("play with friends on facebook")
         }
         settings.setOnClickListener{
             startActivity(Intent(this@MainMenu, Settings::class.java))

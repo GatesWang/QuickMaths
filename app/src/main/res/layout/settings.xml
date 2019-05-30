@@ -8,7 +8,7 @@
         tools:context=".activities.Settings">
 
     <com.wang.gates.quickmaths.custom_views.Title
-            android:id="@+id/timer_mode_title"
+            android:id="@+id/settings_title"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"

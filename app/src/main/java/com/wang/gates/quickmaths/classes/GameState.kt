@@ -3,6 +3,7 @@ package com.wang.gates.quickmaths.classes
 import android.os.CountDownTimer
 import android.util.Log
 import com.wang.gates.quickmaths.activities.Game
+import com.wang.gates.quickmaths.activities.Settings
 import kotlinx.android.synthetic.main.game.*
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -14,28 +15,47 @@ import java.util.concurrent.TimeUnit
 
 class GameState(var game : Game){
     var settings = GameSettings.getInstance()
-    var timeInMilli = 0
+    var timeInMilli =  0
+    var minTimeInMilli = 0 //this is only used for bomb mode
+
+    init{
+        if(settings.getMode() == GameSettings.TIMER_MODE) {
+            when(settings.getDifficulty()){
+                GameSettings.EASY -> {
+                    timeInMilli = 60000
+                }
+                GameSettings.MEDIUM -> {
+                    timeInMilli = 120000
+                }
+                GameSettings.HARD -> {
+                    timeInMilli = 180000
+                }
+            }
+        }
+        else if(settings.getMode() == GameSettings.BOMB_MODE){
+            when(settings.getDifficulty()){
+                GameSettings.EASY -> {
+                    timeInMilli = 10000
+                    minTimeInMilli = 3000
+                }
+                GameSettings.MEDIUM -> {
+                    timeInMilli = 15000
+                    minTimeInMilli = 8000
+                }
+                GameSettings.HARD -> {
+                    timeInMilli = 25000
+                    minTimeInMilli = 15000
+                }
+            }
+        }
+    }
+
 
     private var timer : CountDownTimer? = null
 
     var count : Int = 0
 
-    private fun calculateTime(){
-        //for timer mode we need to convert 0 -> 60000, 1 -> 120000, 2 -> 180000
-        //for bomb mode we need to convert 3 -> 5000, 4 -> 10000, 5 -> 15000
-        if(settings.getMode()==0){
-            timeInMilli = (settings.getTimeControl()+1)*60000
-        }
-        else if(settings.getMode()==1) {
-            timeInMilli = (settings.getTimeControl() - 2) * 5000
-        }
-        else {
-
-        }
-    }
-
-    private fun createTimer(){
-        calculateTime()
+    fun createTimer(){
         timer = object : CountDownTimer(timeInMilli.toLong(), 1000) {
             var d : Date = Calendar.getInstance().time
             override fun onTick(millis: Long) {
@@ -54,12 +74,20 @@ class GameState(var game : Game){
     }
 
     fun startTimer(){
-        createTimer()
         timer!!.start()
     }
 
     fun stopTimer(){
         timer!!.cancel()
+    }
+
+    fun recalculateTime(){
+        if(settings.getMode()==GameSettings.BOMB_MODE){
+            if(timeInMilli>minTimeInMilli){//go down by one second until we hit minimum time
+                timeInMilli-=1000
+            }
+
+        }
     }
 
     fun addToCount(){

@@ -25,15 +25,15 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
 
-
+            android:textSize="10sp"
             android:text="game mode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             style="@style/TitleStyle"
 
-            android:layout_marginTop="124dp"
+            android:layout_marginTop="96dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
     />
@@ -44,10 +44,11 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
 
+            android:textSize="10sp"
             android:text="score"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="376dp"
+            android:layout_marginBottom="340dp"
             style="@style/TitleStyle"
     />
 
@@ -57,12 +58,13 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
 
+            android:textSize="10sp"
             android:text="previous high score"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="244dp"
+            android:layout_marginBottom="216dp"
             style="@style/TitleStyle"
-            app:layout_constraintHorizontal_bias="0.25"/>
+    />
     <Button
             android:id="@+id/main_menu_button"
             app:layout_constraintTop_toTopOf="parent"

@@ -5,17 +5,17 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".activities.modes.TimerMode">
+        tools:context=".activities.GameStart">
 
     <com.wang.gates.quickmaths.custom_views.Title
-            android:id="@+id/timer_mode_title"
+            android:id="@+id/game_start_title"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/bomb_mode"
+            android:text="@string/timer_mode"
             style="@style/TitleStyle"
     />
 
@@ -23,34 +23,27 @@
     <Spinner
             android:id="@+id/difficulty_spinner"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/time_spinner"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
 
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_horizontal"
-            android:layout_marginRight="@dimen/margin_horizontal"
-            app:layout_constraintHorizontal_bias="0.0" app:layout_constraintVertical_bias="0.681"/>
+            style="@style/Spinner"
+            app:layout_constraintHorizontal_bias="0.0" android:layout_marginTop="176dp"/>
 
-    <!-- time -->
-    <Spinner
-            android:id="@+id/time_spinner"
+    <com.wang.gates.quickmaths.custom_views.Title
+            android:id="@+id/description"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/start_timer_game"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_horizontal"
-            android:layout_marginRight="@dimen/margin_horizontal"
-            app:layout_constraintVertical_bias="0.285"
-            app:layout_constraintHorizontal_bias="1.0"
-    />
+            android:textSize="@dimen/explanation_size"
+            style="@style/TitleStyle"
+            android:layout_marginTop="368dp"
+            app:layout_constraintHorizontal_bias="0.4"/>
 
     <Button
-            android:id="@+id/start_timer_game"
+            android:id="@+id/start_game"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -65,20 +58,6 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintVertical_bias="0.991"
             style="@style/ButtonStyle"
-    />
-
-    <com.wang.gates.quickmaths.custom_views.Title
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/explanation_size"
-            android:text="play until you get one wrong or you run out of time"
-            style="@style/TitleStyle"
-            android:layout_marginTop="224dp"
-            app:layout_constraintHorizontal_bias="0.0"
     />
 
 </android.support.constraint.ConstraintLayout>

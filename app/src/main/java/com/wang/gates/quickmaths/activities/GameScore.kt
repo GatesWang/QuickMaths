@@ -7,9 +7,6 @@ import android.preference.PreferenceManager
 import com.wang.gates.quickmaths.R
 import com.wang.gates.quickmaths.classes.GameSettings
 import android.content.Intent
-import com.wang.gates.quickmaths.activities.modes.BombMode
-import com.wang.gates.quickmaths.activities.modes.ChallengeFriendMode
-import com.wang.gates.quickmaths.activities.modes.TimerMode
 import kotlinx.android.synthetic.main.game_score.*
 
 
@@ -45,7 +42,7 @@ class GameScore : AppCompatActivity() {
     }
 
     private fun fillViews(){
-        settings_text_view.text = settings.getDifficultyString() +  " " + settings.getTimeControlString()
+        settings_text_view.text = "" + settings.getModeString() + " " + settings.getDifficultyString()
         score_text_view.text = "score : $score"
         previous_high_score_text_view.text = "previous high score: $previousHighScore"
     }
@@ -71,13 +68,13 @@ class GameScore : AppCompatActivity() {
         play_again_button.setOnClickListener{
             when(settings.getMode()){
                 GameSettings.TIMER_MODE ->{
-                    startActivity(Intent(this@GameScore, TimerMode::class.java))
+                    startActivity(Intent(this@GameScore, GameStart::class.java))
                 }
                 GameSettings.BOMB_MODE ->{
-                    startActivity(Intent(this@GameScore, BombMode::class.java))
+                    startActivity(Intent(this@GameScore, GameStart::class.java))
                 }
                 GameSettings.CHALLENGE_FRIEND_MODE ->{
-                    startActivity(Intent(this@GameScore, ChallengeFriendMode::class.java))
+                    startActivity(Intent(this@GameScore, GameStart::class.java))
                 }
             }
             finish()
@@ -86,8 +83,7 @@ class GameScore : AppCompatActivity() {
 
     //for this particular mode save the game settings
     private fun savePreferredGameSettings(){
-        editor!!.putString(settings.getMode().toString() + "difficulty", settings.getDifficulty().toString())
-        editor!!.putString(settings.getMode().toString() + "timecontrol", settings.getTimeControl().toString())
+        editor!!.putString(settings.getMode().toString(), settings.getDifficulty().toString())
         editor!!.commit()
     }
 }
