@@ -11,13 +11,13 @@ class GameSettings private constructor() {
     private var editor: SharedPreferences.Editor? = null
 
     companion object{
-        val TIMER_MODE = 0
-        val BOMB_MODE = 1
-        val CHALLENGE_FRIEND_MODE = 2
+        const val TIMER_MODE = 0
+        const val BOMB_MODE = 1
+        const val CHALLENGE_FRIEND_MODE = 2
 
-        val EASY = 0
-        val MEDIUM = 1
-        val HARD = 2
+        const val EASY = 0
+        const val MEDIUM = 1
+        const val HARD = 2
 
         private val INSTANCE = GameSettings()
         fun getInstance() : GameSettings {

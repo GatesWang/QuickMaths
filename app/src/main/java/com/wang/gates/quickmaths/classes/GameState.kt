@@ -68,7 +68,7 @@ class GameState(var game : Game){
             }
 
             override fun onFinish() {
-                game.finishGame()
+                game.ifBombModeFinishGame()
             }
         }
     }

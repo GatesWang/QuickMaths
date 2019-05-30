@@ -64,7 +64,6 @@ class GameStart : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     }
     private fun setSpinnerSelected(){
         val preferredDifficulty = settings.getPreferredDifficulty(this@GameStart)
-
         if (preferredDifficulty != null ){
             difficulty_spinner.setSelection(preferredDifficulty)
         }
@@ -82,7 +81,6 @@ class GameStart : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         val difficulties = resources.getStringArray(R.array.difficulties)
         if(parent.getItemAtPosition(pos) is String){
             when(selected){
-                //difficulties
                 difficulties[0] ->{
                     difficulty = GameSettings.EASY
                 }
