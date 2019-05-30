@@ -1,9 +1,14 @@
 package com.wang.gates.quickmaths.classes
 
-class GameSettings private constructor(){
+import android.content.Context
+import android.content.SharedPreferences
+import android.preference.PreferenceManager
 
-    private var mode : Int? = null
+class GameSettings private constructor() {
+    private var mode: Int? = null
     private var difficulty = EASY
+    private var preferences: SharedPreferences? = null
+    private var editor: SharedPreferences.Editor? = null
 
     companion object{
         val TIMER_MODE = 0
@@ -20,6 +25,35 @@ class GameSettings private constructor(){
         }
     }
 
+    //saves high score for a particular mode and difficulty
+    fun saveHighScore(context: Context, score : Int){
+        preferences = PreferenceManager.getDefaultSharedPreferences(context)
+        editor = preferences!!.edit()
+        editor!!.putInt("highscore",score)
+        editor!!.commit()
+    }
+
+    //gets high score for a particular mode and difficulty
+    fun getHighScore(context: Context) : Int{
+        preferences = PreferenceManager.getDefaultSharedPreferences(context)
+        return preferences!!.getInt("highscore", 0)
+    }
+
+    //for this particular mode save difficulty as the preferred difficulty
+    fun savePreferredDifficulty(context: Context){
+        preferences = PreferenceManager.getDefaultSharedPreferences(context)
+        editor = preferences!!.edit()
+        editor!!.putString(getMode().toString(), getDifficulty().toString())
+        editor!!.commit()
+    }
+
+    //for this particular mode get the preferred difficulty
+    fun getPreferredDifficulty(context: Context) : Int {
+        preferences = PreferenceManager.getDefaultSharedPreferences(context)
+        val preferredDifficulty = preferences!!.getString(getMode().toString(), getDifficulty().toString())
+        return preferredDifficulty.toInt()
+    }
+
     fun setMode(mode : Int){
         this.mode = mode
     }
@@ -27,7 +61,6 @@ class GameSettings private constructor(){
     fun setDifficulty(difficulty : Int){
         this.difficulty = difficulty
     }
-
 
     fun getMode() : Int {
         return mode!!

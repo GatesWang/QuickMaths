@@ -62,7 +62,7 @@ class DrawView(context: Context, attrs: AttributeSet) : View(context, attrs) {
     private fun drawProblem(canvas: Canvas){
         val problemParts = problem!!.getProblemParts()
         if(problemParts[1].equals("/")){
-            var startXPart = (0 + mPaint.textSize*.8).toFloat()
+            var startXPart = (0 + mPaint.textSize*.6).toFloat()
             var startYPart = (0 + mPaint.textSize*2.5).toFloat()
             val spacing = 5
 
@@ -74,7 +74,7 @@ class DrawView(context: Context, attrs: AttributeSet) : View(context, attrs) {
         }
         else{
             var startXPart = (0 + mPaint.textSize*1.5).toFloat()
-            var startYPart = (0 + mPaint.textSize*1.2).toFloat()
+            var startYPart = (0 + mPaint.textSize*1.8).toFloat()
             val spacing = 10
             for(part in problemParts){
                 canvas.drawText(part, startXPart, startYPart, mPaint)

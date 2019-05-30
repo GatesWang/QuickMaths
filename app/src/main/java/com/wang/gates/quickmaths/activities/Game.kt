@@ -8,7 +8,6 @@ import android.support.v7.app.AlertDialog
 import android.text.InputType
 import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.game.*
-import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
 import android.view.inputmethod.InputMethodManager
@@ -20,28 +19,49 @@ import android.view.KeyEvent
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView.OnEditorActionListener
 import android.content.DialogInterface
+import android.content.res.ColorStateList
+import android.graphics.PorterDuff
+import android.graphics.drawable.LayerDrawable
+import android.os.Build
+import android.support.annotation.ColorInt
+import android.support.v4.content.ContextCompat
+import android.widget.ProgressBar
 import com.wang.gates.quickmaths.classes.GameSettings
-
 
 class Game : AppCompatActivity() {
     private var generator = ProblemGenerator.getInstance()
     private var settings = GameSettings.getInstance()
     private var problem = generator.getProblem()
-    private var gameState = GameState(this)
+    private var gameState : GameState? = null
     private var input: EditText? = null
     private var dialog: AlertDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.game)
+
+        tintHorizontalProgress(progressBar)
         drawNewProblem()
         setListeners()
-        gameState.createTimer()
-        gameState.startTimer()
+
+        gameState = GameState(this)
+        gameState!!.createTimer()
+        gameState!!.startTimer()
+    }
+
+    private fun tintHorizontalProgress(progress: ProgressBar,
+                                       @ColorInt color: Int = ContextCompat.getColor(progress.context, R.color.colorPrimaryDark)){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            progress.progressTintList = ColorStateList.valueOf(color)
+        } else{
+            val layerDrawable = progress.progressDrawable as? LayerDrawable
+            val progressDrawable = layerDrawable?.findDrawableByLayerId(android.R.id.progress)
+            progressDrawable?.setColorFilter(color, PorterDuff.Mode.SRC_ATOP)
+        }
     }
 
     private fun setListeners(){
-        clear_canvas_button.setOnClickListener{
+        clear_canvas.setOnClickListener{
             draw_view.clearPath()
         }
         show_answer.setOnClickListener{
@@ -57,13 +77,13 @@ class Game : AppCompatActivity() {
             if(inputIsValid()){
                 if(inputIsCorrect()){
                     Toast.makeText(this@Game, "correct", Toast.LENGTH_SHORT).show()
-                    gameState.addToCount()
+                    gameState!!.addToCount()
                     drawNewProblem()
                     if(settings.getMode()==GameSettings.BOMB_MODE){
-                        gameState.stopTimer()
-                        gameState.recalculateTime()
-                        gameState.createTimer()
-                        gameState.startTimer()
+                        gameState!!.stopTimer()
+                        gameState!!.recalculateTime()
+                        gameState!!.createTimer()
+                        gameState!!.startTimer()
                     }
                 }
                 else{
@@ -135,14 +155,14 @@ class Game : AppCompatActivity() {
 
     fun finishGame(){
         val intent = Intent(this@Game, GameScore::class.java)
-        intent.putExtra("score", gameState.count)
+        intent.putExtra("score", gameState!!.score)
         startActivity(intent)
         finish()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        gameState.stopTimer()
+        gameState!!.stopTimer()
     }
 
 

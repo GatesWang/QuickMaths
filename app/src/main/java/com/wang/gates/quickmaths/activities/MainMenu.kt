@@ -31,7 +31,8 @@ class MainMenu : AppCompatActivity() {
             startActivity(Intent(this@MainMenu, GameStart::class.java))
         }
         challenge_friend.setOnClickListener{
-            TODO("play with friends on facebook")
+            gameSettings.setMode(GameSettings.CHALLENGE_FRIEND_MODE)
+            startActivity(Intent(this@MainMenu, GameStart::class.java))
         }
         settings.setOnClickListener{
             startActivity(Intent(this@MainMenu, Settings::class.java))

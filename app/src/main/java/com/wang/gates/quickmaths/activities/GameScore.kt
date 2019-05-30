@@ -7,6 +7,7 @@ import android.preference.PreferenceManager
 import com.wang.gates.quickmaths.R
 import com.wang.gates.quickmaths.classes.GameSettings
 import android.content.Intent
+import android.util.Log
 import kotlinx.android.synthetic.main.game_score.*
 
 
@@ -16,8 +17,6 @@ import kotlinx.android.synthetic.main.game_score.*
 //or play again
 
 class GameScore : AppCompatActivity() {
-    private var preferences : SharedPreferences? = null
-    private var editor : SharedPreferences.Editor? = null
     private var settings = GameSettings.getInstance()
 
     private var score : Int? = null
@@ -31,13 +30,11 @@ class GameScore : AppCompatActivity() {
         fillViews()
         checkForNewHighScore()
         setButtonBehavior()
-        savePreferredGameSettings()
+        settings.savePreferredDifficulty(this@GameScore)
     }
 
     private fun fillNullValues(){
-        preferences = PreferenceManager.getDefaultSharedPreferences(this@GameScore)
-        editor = preferences!!.edit()
-        previousHighScore = preferences!!.getInt(settings.toString(),0)
+        previousHighScore = settings.getHighScore(this@GameScore)
         score = intent.getIntExtra("score",0)
     }
 
@@ -51,8 +48,8 @@ class GameScore : AppCompatActivity() {
         if(score!! > previousHighScore!!){
             //new high score
             showNewHighScore()
-            editor!!.putInt(settings.toString(), score!!)
-            editor!!.commit()
+            Log.d(">>>", "high score, $score")
+            settings.saveHighScore(this@GameScore, score!!)
         }
     }
     //if there is a new high score, change views
@@ -62,7 +59,6 @@ class GameScore : AppCompatActivity() {
 
     private fun setButtonBehavior(){
         main_menu_button.setOnClickListener{
-            editor!!.putBoolean("playagain",false)
             finish()
         }
         play_again_button.setOnClickListener{
@@ -81,9 +77,4 @@ class GameScore : AppCompatActivity() {
         }
     }
 
-    //for this particular mode save the game settings
-    private fun savePreferredGameSettings(){
-        editor!!.putString(settings.getMode().toString(), settings.getDifficulty().toString())
-        editor!!.commit()
-    }
 }

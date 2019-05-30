@@ -1,12 +1,10 @@
 package com.wang.gates.quickmaths.classes
 
 import android.os.CountDownTimer
-import android.util.Log
+import android.widget.ProgressBar
 import com.wang.gates.quickmaths.activities.Game
-import com.wang.gates.quickmaths.activities.Settings
 import kotlinx.android.synthetic.main.game.*
 import java.util.*
-import java.util.concurrent.TimeUnit
 
 
 //this class keeps track of the game state
@@ -17,8 +15,10 @@ class GameState(var game : Game){
     var settings = GameSettings.getInstance()
     var timeInMilli =  0
     var minTimeInMilli = 0 //this is only used for bomb mode
+    var progressBar : ProgressBar? = null
 
     init{
+        //set time
         if(settings.getMode() == GameSettings.TIMER_MODE) {
             when(settings.getDifficulty()){
                 GameSettings.EASY -> {
@@ -48,23 +48,23 @@ class GameState(var game : Game){
                 }
             }
         }
-    }
 
+        //configure the progress bar
+        progressBar = game.progressBar
+        progressBar!!.max = timeInMilli/1000
+    }
 
     private var timer : CountDownTimer? = null
 
-    var count : Int = 0
+    var score : Int = 0
 
     fun createTimer(){
+        progressBar!!.progress = 0
+        progressBar!!.max = timeInMilli/1000
         timer = object : CountDownTimer(timeInMilli.toLong(), 1000) {
             var d : Date = Calendar.getInstance().time
             override fun onTick(millis: Long) {
-                val ms = String.format(
-                    "%01d:%02d",
-                    TimeUnit.MILLISECONDS.toMinutes(millis) % TimeUnit.HOURS.toMinutes(1),
-                    TimeUnit.MILLISECONDS.toSeconds(millis) % TimeUnit.MINUTES.toSeconds(1)
-                )
-                game.time_left.text = ms
+                progressBar!!.incrementProgressBy(1)
             }
 
             override fun onFinish() {
@@ -91,8 +91,8 @@ class GameState(var game : Game){
     }
 
     fun addToCount(){
-        count++
-        game.problem_count.text = "solved: $count"
+        score++
+        game.problem_count.text = "solved: $score"
     }
 
 }
