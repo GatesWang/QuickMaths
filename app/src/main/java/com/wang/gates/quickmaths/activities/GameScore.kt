@@ -1,11 +1,9 @@
 package com.wang.gates.quickmaths.activities
 
-import android.content.SharedPreferences
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.preference.PreferenceManager
 import com.wang.gates.quickmaths.R
-import com.wang.gates.quickmaths.classes.GameSettings
+import com.wang.gates.quickmaths.classes.Settings
 import android.content.Intent
 import android.util.Log
 import kotlinx.android.synthetic.main.game_score.*
@@ -17,7 +15,7 @@ import kotlinx.android.synthetic.main.game_score.*
 //or play again
 
 class GameScore : AppCompatActivity() {
-    private var settings = GameSettings.getInstance()
+    private var settings = Settings.getInstance()
 
     private var score : Int? = null
     private var previousHighScore : Int? = null
@@ -63,13 +61,13 @@ class GameScore : AppCompatActivity() {
         }
         play_again_button.setOnClickListener{
             when(settings.getMode()){
-                GameSettings.TIMER_MODE ->{
+                Settings.TIMER_MODE ->{
                     startActivity(Intent(this@GameScore, GameStart::class.java))
                 }
-                GameSettings.BOMB_MODE ->{
+                Settings.BOMB_MODE ->{
                     startActivity(Intent(this@GameScore, GameStart::class.java))
                 }
-                GameSettings.CHALLENGE_FRIEND_MODE ->{
+                Settings.CHALLENGE_FRIEND_MODE ->{
                     startActivity(Intent(this@GameScore, GameStart::class.java))
                 }
             }

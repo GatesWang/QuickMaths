@@ -21,5 +21,6 @@
         <item>Medium</item>
         <item>Hard</item>
     </string-array>
+    <string name="title_activity_ocr_test">OcrTest</string>
 
 </resources>

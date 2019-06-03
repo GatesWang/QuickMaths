@@ -1,21 +1,19 @@
 package com.wang.gates.quickmaths.activities
 
 import android.content.Intent
-import android.content.SharedPreferences
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.preference.PreferenceManager
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import com.wang.gates.quickmaths.classes.GameSettings
+import com.wang.gates.quickmaths.classes.Settings
 import com.wang.gates.quickmaths.R
 import kotlinx.android.synthetic.main.game_start.*
 
 class GameStart : AppCompatActivity(), AdapterView.OnItemSelectedListener {
-    private var difficulty : Int = GameSettings.EASY
-    private val settings = GameSettings.getInstance()
+    private var difficulty : Int = Settings.EASY
+    private val settings = Settings.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,15 +28,15 @@ class GameStart : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
     private fun setViews(){
         when(settings.getMode()){
-            GameSettings.BOMB_MODE -> {
+            Settings.BOMB_MODE -> {
                 game_start_title.text="Bomb Mode"
                 description.text = "solve until you get one wrong"
             }
-            GameSettings.TIMER_MODE -> {
+            Settings.TIMER_MODE -> {
                 game_start_title.text="Timer Mode"
                 description.text = "solve as many as you can"
             }
-            GameSettings.CHALLENGE_FRIEND_MODE -> {
+            Settings.CHALLENGE_FRIEND_MODE -> {
                 game_start_title.text="Challenge a Friend"
                 description.text = "beat your friends"
                 //this is because we havent added this in yet
@@ -82,13 +80,13 @@ class GameStart : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         if(parent.getItemAtPosition(pos) is String){
             when(selected){
                 difficulties[0] ->{
-                    difficulty = GameSettings.EASY
+                    difficulty = Settings.EASY
                 }
                 difficulties[1] ->{
-                    difficulty = GameSettings.MEDIUM
+                    difficulty = Settings.MEDIUM
                 }
                 difficulties[2] ->{
-                    difficulty = GameSettings.HARD
+                    difficulty = Settings.HARD
                 }
             }
         }

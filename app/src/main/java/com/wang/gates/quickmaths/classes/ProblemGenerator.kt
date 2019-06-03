@@ -12,7 +12,7 @@ class ProblemGenerator private constructor(){
     }
 
     fun getProblem() : Problem {
-        val difficulty = GameSettings.getInstance().getDifficulty()
+        val difficulty = Settings.getInstance().getDifficulty()
         val operationString = getRandomOperation()
         val operands = getOperands(difficulty, operationString)
         return Problem("${operands[0]}$operationString${operands[1]}")
@@ -45,15 +45,15 @@ class ProblemGenerator private constructor(){
     private fun getOperandsMultiply(difficulty : Int) : ArrayList<Int>{
         val operands = arrayListOf<Int>()
         when(difficulty){
-            GameSettings.EASY ->{
+            Settings.EASY ->{
                 operands.add(getRandomNumber(1))
                 operands.add(getRandomNumber(1))
             }
-            GameSettings.MEDIUM -> {
+            Settings.MEDIUM -> {
                 operands.add(getRandomNumber(2))
                 operands.add(getRandomNumber(1))
             }
-            GameSettings.HARD ->{
+            Settings.HARD ->{
                 operands.add(getRandomNumber(2))
                 operands.add(getRandomNumber(2))
             }
@@ -64,19 +64,19 @@ class ProblemGenerator private constructor(){
     private fun getOperandsDivide(difficulty : Int) : ArrayList<Int>{
         val operands = arrayListOf<Int>()
         when(difficulty){
-            GameSettings.EASY ->{
+            Settings.EASY ->{
                 var first = getRandomNumber(1)
                 var second = getRandomNumber(1)
                 operands.add(first*second)
                 operands.add(first)
             }
-            GameSettings.MEDIUM -> {
+            Settings.MEDIUM -> {
                 var first = getRandomNumber(1) * getRandomNumber(1)* getRandomNumber(1)
                 var second = getRandomNumber(1)
                 operands.add(first*second)
                 operands.add(second)
             }
-            GameSettings.HARD ->{
+            Settings.HARD ->{
                 var first = getRandomNumber(2) * getRandomNumber(1)
                 var second = getRandomNumber(1)
                 operands.add(first*second)
@@ -89,15 +89,15 @@ class ProblemGenerator private constructor(){
     private fun getOperandsSubtract(difficulty : Int) : ArrayList<Int>{
         var operands = arrayListOf<Int>()
         when(difficulty){
-            GameSettings.EASY ->{
+            Settings.EASY ->{
                 operands.add(getRandomNumber(1))
                 operands.add(getRandomNumber(1))
             }
-            GameSettings.MEDIUM -> {
+            Settings.MEDIUM -> {
                 operands.add(getRandomNumber(2))
                 operands.add(getRandomNumber(2))
             }
-            GameSettings.HARD ->{
+            Settings.HARD ->{
                 operands.add(getRandomNumber(3))
                 operands.add(getRandomNumber(3))
             }
@@ -108,15 +108,15 @@ class ProblemGenerator private constructor(){
     private fun getOperandsAdd(difficulty : Int) : ArrayList<Int>{
         val operands = arrayListOf<Int>()
         when(difficulty){
-            GameSettings.EASY ->{
+            Settings.EASY ->{
                 operands.add(getRandomNumber(1))
                 operands.add(getRandomNumber(1))
             }
-            GameSettings.MEDIUM -> {
+            Settings.MEDIUM -> {
                 operands.add(getRandomNumber(2))
                 operands.add(getRandomNumber(2))
             }
-            GameSettings.HARD ->{
+            Settings.HARD ->{
                 operands.add(getRandomNumber(3))
                 operands.add(getRandomNumber(3))
             }

@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".activities.Game">
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ProgressBar
             android:id="@+id/progressBar"
@@ -21,25 +20,23 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
     />
-
     <TextView
-            android:id="@+id/problem_count"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
+        android:id="@+id/problem_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
 
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
 
-            app:layout_constraintVertical_bias="0.016"
-            app:layout_constraintHorizontal_bias="1.0"
-            android:text="problems solved"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="10dp"
-            android:layout_marginStart="10dp" android:layout_marginRight="20dp" android:layout_marginEnd="20dp"
-            android:layout_marginTop="40dp"
-    />
-
+        app:layout_constraintVertical_bias="0.016"
+        app:layout_constraintHorizontal_bias="1.0"
+        android:text="problems solved"
+        app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp" android:layout_marginRight="20dp" android:layout_marginEnd="20dp"
+        android:layout_marginTop="40dp"
+/>
 
     <com.wang.gates.quickmaths.custom_views.DrawViewProblem
             android:id="@+id/draw_view_problem"
@@ -54,21 +51,6 @@
 
             app:layout_constraintVertical_bias="1.0"
             app:layout_constraintHorizontal_bias="0.0"
-    />
-
-    <com.wang.gates.quickmaths.custom_views.DrawViewAnswer
-            android:id="@+id/draw_view_answer"
-            android:layout_width="254dp"
-            android:layout_height="79dp"
-            android:layout_marginBottom="20dp"
-
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/submit_answer"
-            app:layout_constraintStart_toStartOf="parent"
-
-            app:layout_constraintVertical_bias="0.969"
-            app:layout_constraintHorizontal_bias="0.561"
     />
 
     <Button
@@ -100,5 +82,6 @@
             android:clickable="true"
             android:layout_marginTop="80dp"
     />
+    <include layout="@layout/editor_view"/>
 
 </android.support.constraint.ConstraintLayout>
