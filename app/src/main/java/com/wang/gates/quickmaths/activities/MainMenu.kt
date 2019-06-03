@@ -18,8 +18,8 @@ class MainMenu : AppCompatActivity() {
         setContentView(R.layout.main_menu)
         setListeners()
 
-        val musicPlayer = MusicPlayer(this@MainMenu)
-        musicPlayer.playSong(R.raw.mansnothot)
+        val musicPlayer = MusicPlayer()
+        musicPlayer.playSong(this@MainMenu, R.raw.mansnothot)
     }
 
     private fun setListeners(){

@@ -41,7 +41,7 @@ class GameStart : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                 description.text = "beat your friends"
                 //this is because we havent added this in yet
                 start_game.setOnClickListener{
-                    Toast.makeText(this@GameStart, "This feature is coming soon", Toast.LENGTH_SHORT)
+                    Toast.makeText(this@GameStart, "This feature is coming soon", Toast.LENGTH_SHORT).show()
                 }
             }
         }

@@ -183,6 +183,7 @@ public class Game extends AppCompatActivity
     if(!inputIsValid()) {
       Toast.makeText(Game.this, "invalid input", Toast.LENGTH_SHORT).show();
       editorView.getEditor().clear();
+      drawViewProblem.clearPath();
       return;
     }
 
@@ -194,6 +195,7 @@ public class Game extends AppCompatActivity
     else{
       Toast.makeText(Game.this, "incorrect", Toast.LENGTH_SHORT).show();
       editorView.getEditor().clear();
+      drawViewProblem.clearPath();
       ifBombModeFinishGame();
     }
   }
