@@ -19,7 +19,9 @@ class MainMenu : AppCompatActivity() {
         setListeners()
 
         val musicPlayer = MusicPlayer()
-        musicPlayer.playSong(this@MainMenu, R.raw.mansnothot)
+        if(musicPlayer.musicOn(this@MainMenu)){
+            musicPlayer.playSong(this@MainMenu, R.raw.mansnothot)
+        }
     }
 
     private fun setListeners(){
