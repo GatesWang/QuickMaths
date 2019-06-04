@@ -1,7 +1,6 @@
 package com.wang.gates.quickmaths.classes
 
 import android.os.CountDownTimer
-import android.util.Log
 import android.widget.ProgressBar
 import com.wang.gates.quickmaths.activities.Game
 import kotlinx.android.synthetic.main.game.*
@@ -21,30 +20,30 @@ class State(var game : Game){
 
     init{
         //set time
-        if(settings.getMode() == Settings.TIMER_MODE) {
+        if(settings.getMode() == Settings.Companion.Mode.TIMER_MODE) {
             when(settings.getDifficulty()){
-                Settings.EASY -> {
+                Settings.Companion.Difficulty.EASY -> {
                     timeInMilli = 60000
                 }
-                Settings.MEDIUM -> {
+                Settings.Companion.Difficulty.MEDIUM -> {
                     timeInMilli = 120000
                 }
-                Settings.HARD -> {
+                Settings.Companion.Difficulty.HARD -> {
                     timeInMilli = 180000
                 }
             }
         }
-        else if(settings.getMode() == Settings.BOMB_MODE){
+        else if(settings.getMode() == Settings.Companion.Mode.BOMB_MODE){
             when(settings.getDifficulty()){
-                Settings.EASY -> {
+                Settings.Companion.Difficulty.EASY -> {
                     timeInMilli = 10000
                     minTimeInMilli = 3000
                 }
-                Settings.MEDIUM -> {
+                Settings.Companion.Difficulty.MEDIUM -> {
                     timeInMilli = 15000
                     minTimeInMilli = 8000
                 }
-                Settings.HARD -> {
+                Settings.Companion.Difficulty.HARD -> {
                     timeInMilli = 25000
                     minTimeInMilli = 15000
                 }
@@ -54,7 +53,7 @@ class State(var game : Game){
         resetProgressBar()
     }
 
-    fun resetProgressBar() {
+    private fun resetProgressBar() {
         progressBar!!.progress = 0
         progressBar!!.max = timeInMilli/1000
     }
@@ -87,7 +86,7 @@ class State(var game : Game){
     }
 
     fun recalculateTime(){
-        if(settings.getMode()==Settings.BOMB_MODE){
+        if(settings.getMode()== Settings.Companion.Mode.BOMB_MODE){
             if(timeInMilli>minTimeInMilli){//go down by one second until we hit minimum time
                 timeInMilli-=1000
             }

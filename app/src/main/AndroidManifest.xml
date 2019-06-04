@@ -21,6 +21,8 @@
         <activity android:name=".activities.GameScore"/>
         <activity android:name=".activities.GameStart"/>
         <activity android:name=".activities.GameSettings"/>
+        <activity android:name=".activities.GameHighScore"/>
+
     </application>
 
 </manifest>

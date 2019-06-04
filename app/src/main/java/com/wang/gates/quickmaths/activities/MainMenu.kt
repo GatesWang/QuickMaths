@@ -26,16 +26,16 @@ class MainMenu : AppCompatActivity() {
 
     private fun setListeners(){
         timer_mode.setOnClickListener{
-            gameSettings.setMode(Settings.TIMER_MODE)
+            gameSettings.setMode(Settings.Companion.Mode.TIMER_MODE)
             startActivity(Intent(this@MainMenu, GameStart::class.java))
         }
         bomb_mode.setOnClickListener{
-            gameSettings.setMode(Settings.BOMB_MODE)
+            gameSettings.setMode(Settings.Companion.Mode.BOMB_MODE)
             startActivity(Intent(this@MainMenu, GameStart::class.java))
         }
         challenge_friend.setOnClickListener{
-            gameSettings.setMode(Settings.CHALLENGE_FRIEND_MODE)
-            startActivity(Intent(this@MainMenu, GameStart::class.java))
+            gameSettings.setMode(Settings.Companion.Mode.CHALLENGE_FRIEND_MODE)
+            startActivity(Intent(this@MainMenu, GameHighScore::class.java))
         }
         settings.setOnClickListener{
             startActivity(Intent(this@MainMenu, GameSettings::class.java))

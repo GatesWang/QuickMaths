@@ -12,7 +12,7 @@ import com.wang.gates.quickmaths.R
 import kotlinx.android.synthetic.main.game_start.*
 
 class GameStart : AppCompatActivity(), AdapterView.OnItemSelectedListener {
-    private var difficulty : Int = Settings.EASY
+    private var difficulty : Settings.Companion.Difficulty = Settings.Companion.Difficulty.EASY
     private val settings = Settings.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,15 +28,15 @@ class GameStart : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
     private fun setViews(){
         when(settings.getMode()){
-            Settings.BOMB_MODE -> {
+            Settings.Companion.Mode.BOMB_MODE -> {
                 game_start_title.text="Bomb Mode"
                 description.text = "solve until you get one wrong"
             }
-            Settings.TIMER_MODE -> {
+            Settings.Companion.Mode.TIMER_MODE -> {
                 game_start_title.text="Timer Mode"
                 description.text = "solve as many as you can"
             }
-            Settings.CHALLENGE_FRIEND_MODE -> {
+            Settings.Companion.Mode.CHALLENGE_FRIEND_MODE -> {
                 game_start_title.text="Challenge a Friend"
                 description.text = "beat your friends"
                 //this is because we havent added this in yet
@@ -80,13 +80,13 @@ class GameStart : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         if(parent.getItemAtPosition(pos) is String){
             when(selected){
                 difficulties[0] ->{
-                    difficulty = Settings.EASY
+                    difficulty = Settings.Companion.Difficulty.EASY
                 }
                 difficulties[1] ->{
-                    difficulty = Settings.MEDIUM
+                    difficulty = Settings.Companion.Difficulty.MEDIUM
                 }
                 difficulties[2] ->{
-                    difficulty = Settings.HARD
+                    difficulty = Settings.Companion.Difficulty.HARD
                 }
             }
         }

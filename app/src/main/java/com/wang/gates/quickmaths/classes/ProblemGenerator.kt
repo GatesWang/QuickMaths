@@ -23,7 +23,7 @@ class ProblemGenerator private constructor(){
         return operations[randomValue]
     }
 
-    private fun getOperands(difficulty: Int, operation : String) : ArrayList<Int>{
+    private fun getOperands(difficulty: Settings.Companion.Difficulty, operation : String) : ArrayList<Int>{
         var operands = arrayListOf<Int>()
         when(operation){
             "+" -> {
@@ -42,18 +42,18 @@ class ProblemGenerator private constructor(){
         return operands
     }
 
-    private fun getOperandsMultiply(difficulty : Int) : ArrayList<Int>{
+    private fun getOperandsMultiply(difficulty : Settings.Companion.Difficulty) : ArrayList<Int>{
         val operands = arrayListOf<Int>()
         when(difficulty){
-            Settings.EASY ->{
+            Settings.Companion.Difficulty.EASY ->{
                 operands.add(getRandomNumber(1))
                 operands.add(getRandomNumber(1))
             }
-            Settings.MEDIUM -> {
+            Settings.Companion.Difficulty.MEDIUM -> {
                 operands.add(getRandomNumber(2))
                 operands.add(getRandomNumber(1))
             }
-            Settings.HARD ->{
+            Settings.Companion.Difficulty.HARD ->{
                 operands.add(getRandomNumber(2))
                 operands.add(getRandomNumber(2))
             }
@@ -61,22 +61,22 @@ class ProblemGenerator private constructor(){
         return operands
     }
 
-    private fun getOperandsDivide(difficulty : Int) : ArrayList<Int>{
+    private fun getOperandsDivide(difficulty : Settings.Companion.Difficulty) : ArrayList<Int>{
         val operands = arrayListOf<Int>()
         when(difficulty){
-            Settings.EASY ->{
+            Settings.Companion.Difficulty.EASY ->{
                 var first = getRandomNumber(1)
                 var second = getRandomNumber(1)
                 operands.add(first*second)
                 operands.add(first)
             }
-            Settings.MEDIUM -> {
+            Settings.Companion.Difficulty.MEDIUM -> {
                 var first = getRandomNumber(1) * getRandomNumber(1)* getRandomNumber(1)
                 var second = getRandomNumber(1)
                 operands.add(first*second)
                 operands.add(second)
             }
-            Settings.HARD ->{
+            Settings.Companion.Difficulty.HARD ->{
                 var first = getRandomNumber(2) * getRandomNumber(1)
                 var second = getRandomNumber(1)
                 operands.add(first*second)
@@ -86,18 +86,18 @@ class ProblemGenerator private constructor(){
         return operands
     }
 
-    private fun getOperandsSubtract(difficulty : Int) : ArrayList<Int>{
+    private fun getOperandsSubtract(difficulty : Settings.Companion.Difficulty) : ArrayList<Int>{
         var operands = arrayListOf<Int>()
         when(difficulty){
-            Settings.EASY ->{
+            Settings.Companion.Difficulty.EASY ->{
                 operands.add(getRandomNumber(1))
                 operands.add(getRandomNumber(1))
             }
-            Settings.MEDIUM -> {
+            Settings.Companion.Difficulty.MEDIUM -> {
                 operands.add(getRandomNumber(2))
                 operands.add(getRandomNumber(2))
             }
-            Settings.HARD ->{
+            Settings.Companion.Difficulty.HARD ->{
                 operands.add(getRandomNumber(3))
                 operands.add(getRandomNumber(3))
             }
@@ -105,18 +105,18 @@ class ProblemGenerator private constructor(){
         return ArrayList(operands.sortedWith(compareBy{ -it }))
     }
 
-    private fun getOperandsAdd(difficulty : Int) : ArrayList<Int>{
+    private fun getOperandsAdd(difficulty : Settings.Companion.Difficulty) : ArrayList<Int>{
         val operands = arrayListOf<Int>()
         when(difficulty){
-            Settings.EASY ->{
+            Settings.Companion.Difficulty.EASY ->{
                 operands.add(getRandomNumber(1))
                 operands.add(getRandomNumber(1))
             }
-            Settings.MEDIUM -> {
+            Settings.Companion.Difficulty.MEDIUM -> {
                 operands.add(getRandomNumber(2))
                 operands.add(getRandomNumber(2))
             }
-            Settings.HARD ->{
+            Settings.Companion.Difficulty.HARD ->{
                 operands.add(getRandomNumber(3))
                 operands.add(getRandomNumber(3))
             }

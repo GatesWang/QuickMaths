@@ -61,13 +61,13 @@ class GameScore : AppCompatActivity() {
         }
         play_again_button.setOnClickListener{
             when(settings.getMode()){
-                Settings.TIMER_MODE ->{
+                Settings.Companion.Mode.TIMER_MODE ->{
                     startActivity(Intent(this@GameScore, GameStart::class.java))
                 }
-                Settings.BOMB_MODE ->{
+                Settings.Companion.Mode.BOMB_MODE ->{
                     startActivity(Intent(this@GameScore, GameStart::class.java))
                 }
-                Settings.CHALLENGE_FRIEND_MODE ->{
+                Settings.Companion.Mode.CHALLENGE_FRIEND_MODE ->{
                     startActivity(Intent(this@GameScore, GameStart::class.java))
                 }
             }
