@@ -14,16 +14,20 @@ import android.graphics.drawable.LayerDrawable
 import android.os.Build
 import android.support.annotation.ColorInt
 import android.support.v4.content.ContextCompat
+import android.util.Log
 import android.widget.ProgressBar
 import com.wang.gates.quickmaths.classes.Settings
 import com.wang.gates.quickmaths.classes.State
+import kotlinx.android.synthetic.main.submit_answer.*
+import android.view.Gravity
+
+
 
 class Game : AppCompatActivity() {
     private var generator = ProblemGenerator.getInstance()
     private var settings = Settings.getInstance()
     private var problem = generator.getProblem()
     private var gameState : State? = null
-    private var input: EditText? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,25 +57,28 @@ class Game : AppCompatActivity() {
         clear_canvas.setOnClickListener{
             draw_view_problem.clearPath()
         }
-        submit_answer.setOnClickListener{
-            //            submitAnswer()
+        submit.setOnClickListener{
+            submitAnswer()
         }
     }
 
     private fun submitAnswer(){
+
         if(!inputIsValid()) {
             Toast.makeText(this@Game, "invalid input", Toast.LENGTH_SHORT).show()
+            input.setText("")
             return
         }
 
         if(inputIsCorrect()){
-            Toast.makeText(this@Game, "correct", Toast.LENGTH_SHORT).show()
             gameState!!.addToCount()
+            input.setText("")
             drawNewProblem()
             ifBombModeLowerTime()
         }
         else{
             Toast.makeText(this@Game, "incorrect", Toast.LENGTH_SHORT).show()
+            input.setText("")
             ifBombModeFinishGame()
         }
     }
@@ -86,13 +93,13 @@ class Game : AppCompatActivity() {
     }
 
     private fun inputIsValid() : Boolean{
-        val inputString = input!!.text.toString()
+        val inputString = input.text.toString().trim()
         val inputInt = inputString.toIntOrNull()
         return (inputInt!=null)
     }
 
     private fun inputIsCorrect() : Boolean{
-        return input!!.text.toString().toInt() == problem.getProblemAnswer()
+        return input.text.toString().toInt() == problem.getProblemAnswer()
     }
 
     private fun drawNewProblem(){

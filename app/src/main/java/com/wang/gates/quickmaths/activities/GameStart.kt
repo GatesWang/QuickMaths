@@ -36,14 +36,6 @@ class GameStart : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                 game_start_title.text="Timer Mode"
                 description.text = "solve as many as you can"
             }
-            Settings.Companion.Mode.CHALLENGE_FRIEND_MODE -> {
-                game_start_title.text="Challenge a Friend"
-                description.text = "beat your friends"
-                //this is because we havent added this in yet
-                start_game.setOnClickListener{
-                    Toast.makeText(this@GameStart, "This feature is coming soon", Toast.LENGTH_SHORT).show()
-                }
-            }
         }
     }
 
@@ -51,9 +43,9 @@ class GameStart : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         ArrayAdapter.createFromResource(
             this,
             R.array.difficulties,
-            R.layout.spinner_layout
+            R.layout.spinner_item
         ).also { adapter ->
-            adapter.setDropDownViewResource(R.layout.spinner_layout)
+            adapter.setDropDownViewResource(R.layout.spinner_item)
             difficulty_spinner.adapter = adapter
         }
     }

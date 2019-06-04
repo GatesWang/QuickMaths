@@ -5,7 +5,7 @@
     <dimen name="margin_bottom">20dp</dimen>
 
     <dimen name="title_font_size">15sp</dimen>
-    <dimen name="text_size">20sp</dimen>
+    <dimen name="button_text_size">7sp</dimen>
     <dimen name="explanation_size">8sp</dimen>
 
     <dimen name="padding">10dp</dimen>
@@ -15,4 +15,12 @@
     <dimen name="text_button_width">55dp</dimen>
     <dimen name="text_button_height">30dp</dimen>
     <dimen name="text_button_margin">5dp</dimen>
+
+    <dimen name="keyboard_size">50dp</dimen>
+    <dimen name="submit_element_size">130dp</dimen>
+
+    <dimen name="high_score_width">100dp</dimen>
+    <dimen name="high_score_height">10dp</dimen>
+
+
 </resources>

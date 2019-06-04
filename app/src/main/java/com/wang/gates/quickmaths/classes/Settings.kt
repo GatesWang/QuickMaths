@@ -12,16 +12,15 @@ class Settings private constructor() {
     private var editor: SharedPreferences.Editor? = null
 
     companion object{
-        enum class Mode(var int: Int){
-            TIMER_MODE(0),
-            BOMB_MODE(1),
-            CHALLENGE_FRIEND_MODE(2)
+        enum class Mode(var int: Int, var string : String){
+            TIMER_MODE(0, "timer"),
+            BOMB_MODE(1, "bomb")
         }
 
-        enum class Difficulty(var int: Int){
-            EASY(0),
-            MEDIUM(1),
-            HARD(2)
+        enum class Difficulty(var int: Int, var string : String){
+            EASY(0, "easy"),
+            MEDIUM(1, "medium"),
+            HARD(2, "hard")
         }
 
         private val INSTANCE = Settings()
@@ -44,7 +43,7 @@ class Settings private constructor() {
     }
 
     //gets high score for a particular mode and difficulty
-    fun getHighScore(context: Context, mode: Int, difficulty: Int) : Int{
+    fun getHighScore(context: Context, mode: Mode, difficulty: Difficulty) : Int{
         preferences = PreferenceManager.getDefaultSharedPreferences(context)
         return preferences!!.getInt("${mode}highscore${difficulty}", 0)
     }

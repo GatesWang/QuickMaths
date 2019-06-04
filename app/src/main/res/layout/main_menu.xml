@@ -7,7 +7,7 @@
         android:layout_height="match_parent"
         tools:context=".activities.MainMenu">
 
-    <com.wang.gates.quickmaths.custom_views.Title
+    <com.wang.gates.quickmaths.custom_views.TitleView
             android:id="@+id/main_menu_title"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -20,7 +20,7 @@
 
     />
 
-    <Button
+    <com.wang.gates.quickmaths.custom_views.ButtonView
         android:id="@+id/timer_mode"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -36,10 +36,10 @@
         style="@style/ButtonStyle"
     />
 
-    <Button
+    <com.wang.gates.quickmaths.custom_views.ButtonView
             android:id="@+id/bomb_mode"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/challenge_friend"
+            app:layout_constraintBottom_toTopOf="@id/high_scores"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
 
@@ -53,8 +53,8 @@
             style="@style/ButtonStyle"
             app:layout_constraintHorizontal_bias="1.0"/>
 
-    <Button
-            android:id="@+id/challenge_friend"
+    <com.wang.gates.quickmaths.custom_views.ButtonView
+            android:id="@+id/high_scores"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@id/settings"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -69,7 +69,7 @@
             style="@style/ButtonStyle"
             app:layout_constraintHorizontal_bias="0.0"/>
 
-    <Button
+    <com.wang.gates.quickmaths.custom_views.ButtonView
             android:id="@+id/settings"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"

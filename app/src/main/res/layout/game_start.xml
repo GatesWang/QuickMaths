@@ -7,7 +7,7 @@
         android:layout_height="match_parent"
         tools:context=".activities.GameStart">
 
-    <com.wang.gates.quickmaths.custom_views.Title
+    <com.wang.gates.quickmaths.custom_views.TitleView
             android:id="@+id/game_start_title"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -29,7 +29,7 @@
             style="@style/Spinner"
             app:layout_constraintHorizontal_bias="0.0" android:layout_marginTop="176dp"/>
 
-    <com.wang.gates.quickmaths.custom_views.Title
+    <com.wang.gates.quickmaths.custom_views.TitleView
             android:id="@+id/description"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -42,7 +42,7 @@
             android:layout_marginTop="368dp"
             app:layout_constraintHorizontal_bias="0.4"/>
 
-    <Button
+    <com.wang.gates.quickmaths.custom_views.ButtonView
             android:id="@+id/start_game"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"

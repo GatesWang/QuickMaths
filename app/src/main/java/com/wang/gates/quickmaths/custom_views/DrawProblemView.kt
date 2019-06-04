@@ -6,11 +6,11 @@ import android.graphics.Rect
 import android.util.AttributeSet
 import com.wang.gates.quickmaths.classes.Problem
 
-class DrawViewProblem(context: Context, attrs: AttributeSet) : DrawView(context, attrs){
+class DrawProblemView(context: Context, attrs: AttributeSet) : DrawView(context, attrs){
     private var problem : Problem? = null
 
     init{
-        setTextSize(300)
+        setTextSize(250)
     }
 
     private fun setTextSize(desiredWidth : Int){

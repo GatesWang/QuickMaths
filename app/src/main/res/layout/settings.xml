@@ -7,7 +7,7 @@
         android:layout_height="match_parent"
         tools:context=".activities.GameSettings">
 
-    <com.wang.gates.quickmaths.custom_views.Title
+    <com.wang.gates.quickmaths.custom_views.TitleView
             android:id="@+id/settings_title"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -19,7 +19,7 @@
             style="@style/TitleStyle"
     />
 
-    <com.wang.gates.quickmaths.custom_views.Title
+    <com.wang.gates.quickmaths.custom_views.TitleView
             android:id="@+id/music_label"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"

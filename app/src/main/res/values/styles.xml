@@ -17,13 +17,8 @@
     </style>
 
     <style name="ButtonStyle" parent="android:Widget">
-        <item name="android:padding">@dimen/padding</item>
-        <item name="android:background">@drawable/rounded_rectangle</item>
-        <item name="android:textColor">@color/colorAccent</item>
-        <item name="android:textSize">@dimen/text_size</item>
         <item name="android:layout_marginTop">@dimen/margin_top</item>
         <item name="android:layout_marginBottom">@dimen/margin_top</item>
-        <item name="android:fontFamily">@font/oswald</item>
     </style>
 
 

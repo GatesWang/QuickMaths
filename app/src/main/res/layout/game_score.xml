@@ -7,7 +7,7 @@
         android:layout_height="match_parent"
         tools:context=".activities.GameScore">
 
-    <com.wang.gates.quickmaths.custom_views.Title
+    <com.wang.gates.quickmaths.custom_views.TitleView
             android:id="@+id/game_score_title"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -19,7 +19,7 @@
             style="@style/TitleStyle"
     />
 
-    <com.wang.gates.quickmaths.custom_views.Title
+    <com.wang.gates.quickmaths.custom_views.TitleView
             android:id="@+id/settings_text_view"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -38,7 +38,7 @@
             android:layout_marginRight="10dp"
     />
 
-    <com.wang.gates.quickmaths.custom_views.Title
+    <com.wang.gates.quickmaths.custom_views.TitleView
             android:id="@+id/score_text_view"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -52,7 +52,7 @@
             style="@style/TitleStyle"
     />
 
-    <com.wang.gates.quickmaths.custom_views.Title
+    <com.wang.gates.quickmaths.custom_views.TitleView
             android:id="@+id/previous_high_score_text_view"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -65,7 +65,7 @@
             android:layout_marginBottom="216dp"
             style="@style/TitleStyle"
     />
-    <Button
+    <com.wang.gates.quickmaths.custom_views.ButtonView
             android:id="@+id/main_menu_button"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -81,7 +81,7 @@
             style="@style/ButtonStyle"
     />
 
-    <Button
+    <com.wang.gates.quickmaths.custom_views.ButtonView
             android:id="@+id/play_again_button"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"

@@ -67,9 +67,6 @@ class GameScore : AppCompatActivity() {
                 Settings.Companion.Mode.BOMB_MODE ->{
                     startActivity(Intent(this@GameScore, GameStart::class.java))
                 }
-                Settings.Companion.Mode.CHALLENGE_FRIEND_MODE ->{
-                    startActivity(Intent(this@GameScore, GameStart::class.java))
-                }
             }
             finish()
         }

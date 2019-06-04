@@ -33,8 +33,7 @@ class MainMenu : AppCompatActivity() {
             gameSettings.setMode(Settings.Companion.Mode.BOMB_MODE)
             startActivity(Intent(this@MainMenu, GameStart::class.java))
         }
-        challenge_friend.setOnClickListener{
-            gameSettings.setMode(Settings.Companion.Mode.CHALLENGE_FRIEND_MODE)
+        high_scores.setOnClickListener{
             startActivity(Intent(this@MainMenu, GameHighScore::class.java))
         }
         settings.setOnClickListener{

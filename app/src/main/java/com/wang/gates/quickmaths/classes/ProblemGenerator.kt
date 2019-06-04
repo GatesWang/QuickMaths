@@ -39,6 +39,9 @@ class ProblemGenerator private constructor(){
                 operands = getOperandsDivide(difficulty)
             }
         }
+        if(operands[0] == operands[1]){
+            return getOperands(difficulty, operation) // make sure two operands are not equal
+        }
         return operands
     }
 
