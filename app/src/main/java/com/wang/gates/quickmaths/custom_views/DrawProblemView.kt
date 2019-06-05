@@ -2,6 +2,8 @@ package com.wang.gates.quickmaths.custom_views
 
 import android.content.Context
 import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
 import android.graphics.Rect
 import android.util.AttributeSet
 import com.wang.gates.quickmaths.classes.Problem
@@ -30,33 +32,38 @@ class DrawProblemView(context: Context, attrs: AttributeSet) : DrawView(context,
     }
 
     private fun drawProblem(canvas: Canvas){
-        val problemParts = problem!!.getProblemParts()
-        if(problemParts[1].equals("/")){
+        val (operand1, operator , operand2) = problem!!.getProblemParts()
+        if(operator.equals("/")){
             var startXPart = (0 + mPaint.textSize*.6).toFloat()
             var startYPart = (0 + mPaint.textSize*2.5).toFloat()
             val spacing = 5
 
-            canvas.drawText(problemParts[2], startXPart, startYPart, mPaint)
+            canvas.drawText(operand2, startXPart, startYPart, mPaint)
             startXPart += mPaint.textSize
             drawDivisionOperator(canvas, startXPart, startYPart)
             startXPart += mPaint.textSize + spacing
-            canvas.drawText(problemParts[0], startXPart, startYPart, mPaint)
+            canvas.drawText(operand1, startXPart, startYPart, mPaint)
         }
         else{
-            var startXPart = (0 + mPaint.textSize*1.5).toFloat()
+            mPaint.textAlign = Paint.Align.RIGHT
+            var startXPart = (0 + mPaint.textSize*3.1).toFloat()
             var startYPart = (0 + mPaint.textSize*1.8).toFloat()
             val spacing = 10
-            for(part in problemParts){
-                canvas.drawText(part, startXPart, startYPart, mPaint)
-                startYPart += mPaint.textSize + spacing
-            }
+
+            canvas.drawText(operand1, startXPart, startYPart, mPaint)
+            startYPart += mPaint.textSize + spacing
+            canvas.drawText("$operator $operand2", startXPart, startYPart, mPaint)
+            startYPart += mPaint.textSize + spacing
             drawHorizontalLine(canvas, startYPart)
+            mPaint.textAlign = Paint.Align.CENTER
         }
     }
 
+
+
     private fun drawHorizontalLine(canvas: Canvas, y : Float){
         val startXLine = (mPaint.textSize*.5).toFloat()
-        val endXLine = (mPaint.textSize*3)
+        val endXLine = (mPaint.textSize*3.5).toFloat()
 
         val startYLine = (y - mPaint.textSize*.5).toFloat()
         val endYLine = (y - mPaint.textSize*.5).toFloat()
@@ -71,7 +78,6 @@ class DrawProblemView(context: Context, attrs: AttributeSet) : DrawView(context,
 
     private fun drawDivisionOperator(canvas: Canvas, x : Float, y : Float){
         //vertical
-
         var startXLine = x - 35
         var endXLine = x - 35
 
@@ -88,7 +94,6 @@ class DrawProblemView(context: Context, attrs: AttributeSet) : DrawView(context,
         //horizontal
         endXLine = (x + mPaint.textSize*(2.5).toFloat())
         endYLine = (y - mPaint.textSize)
-
 
         canvas.drawLine(
             startXLine,

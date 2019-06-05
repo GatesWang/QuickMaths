@@ -31,6 +31,7 @@ class Game : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.game)
 
+        settings.savePreferredDifficulty(this@Game)
         setProgressBarColor(progress_bar)
         drawNewProblem()
         gameState = State(this)
@@ -105,14 +106,18 @@ class Game : AppCompatActivity() {
     }
 
     fun finishGame(){
-        //stop the timer
-        gameState!!.stopTimer()
         //get ready to go to game score
         val intent = Intent(this@Game, GameScore::class.java)
         intent.putExtra("score", gameState!!.score)
         startActivity(intent)
         //close
         finish()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        //stop the timer
+        gameState!!.stopTimer()
     }
 
 
