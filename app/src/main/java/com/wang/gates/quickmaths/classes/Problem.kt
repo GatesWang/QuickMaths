@@ -1,6 +1,6 @@
 package com.wang.gates.quickmaths.classes
 
-class Problem(var problem : String){
+class Problem(var problem : String)  {
     fun getProblemAnswer() : Int{
         val problemParts = getProblemParts()
         var answer = 0
@@ -40,4 +40,5 @@ class Problem(var problem : String){
     override fun toString(): String {
         return problem
     }
+
 }

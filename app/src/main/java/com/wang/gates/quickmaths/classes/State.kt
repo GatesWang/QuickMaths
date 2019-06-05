@@ -49,7 +49,7 @@ class State(var game : Game){
                 }
             }
         }
-        progressBar = game.progressBar
+        progressBar = game.progress_bar
         resetProgressBar()
     }
 

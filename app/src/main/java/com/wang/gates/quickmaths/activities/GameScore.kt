@@ -7,6 +7,7 @@ import com.wang.gates.quickmaths.classes.Settings
 import android.content.Intent
 import android.util.Log
 import kotlinx.android.synthetic.main.game_score.*
+import org.jetbrains.anko.*
 
 
 //activity to display the results of the game
@@ -50,6 +51,7 @@ class GameScore : AppCompatActivity() {
             settings.saveHighScore(this@GameScore, score!!)
         }
     }
+
     //if there is a new high score, change views
     private fun showNewHighScore(){
         score_text_view.text = "new high score: $score"
@@ -59,6 +61,7 @@ class GameScore : AppCompatActivity() {
         main_menu_button.setOnClickListener{
             finish()
         }
+
         play_again_button.setOnClickListener{
             when(settings.getMode()){
                 Settings.Companion.Mode.TIMER_MODE ->{
@@ -70,6 +73,7 @@ class GameScore : AppCompatActivity() {
             }
             finish()
         }
+
     }
 
 }

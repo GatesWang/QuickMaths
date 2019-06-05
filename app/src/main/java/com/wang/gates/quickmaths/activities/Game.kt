@@ -4,7 +4,6 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.game.*
-import android.widget.EditText
 import android.widget.Toast
 import com.wang.gates.quickmaths.classes.ProblemGenerator
 import com.wang.gates.quickmaths.R
@@ -16,16 +15,15 @@ import android.support.annotation.ColorInt
 import android.support.v4.content.ContextCompat
 import android.util.Log
 import android.widget.ProgressBar
+import com.wang.gates.quickmaths.classes.Problem
 import com.wang.gates.quickmaths.classes.Settings
 import com.wang.gates.quickmaths.classes.State
 import kotlinx.android.synthetic.main.submit_answer.*
-import android.view.Gravity
-
 
 
 class Game : AppCompatActivity() {
-    private var generator = ProblemGenerator.getInstance()
-    private var settings = Settings.getInstance()
+    private val generator = ProblemGenerator.getInstance()
+    private val settings = Settings.getInstance()
     private var problem = generator.getProblem()
     private var gameState : State? = null
 
@@ -33,13 +31,13 @@ class Game : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.game)
 
-        setProgressBarColor(progressBar)
+        setProgressBarColor(progress_bar)
         drawNewProblem()
-        setListeners()
-
         gameState = State(this)
         gameState!!.createTimer()
         gameState!!.startTimer()
+        setListeners()
+
     }
 
     private fun setProgressBarColor(progress: ProgressBar,
@@ -63,7 +61,6 @@ class Game : AppCompatActivity() {
     }
 
     private fun submitAnswer(){
-
         if(!inputIsValid()) {
             Toast.makeText(this@Game, "invalid input", Toast.LENGTH_SHORT).show()
             input.setText("")
@@ -79,7 +76,6 @@ class Game : AppCompatActivity() {
         else{
             Toast.makeText(this@Game, "incorrect", Toast.LENGTH_SHORT).show()
             input.setText("")
-            ifBombModeFinishGame()
         }
     }
 
@@ -108,23 +104,16 @@ class Game : AppCompatActivity() {
         draw_view_problem.clearPath()
     }
 
-    private fun ifBombModeFinishGame(){
-        if(settings.getMode()== Settings.Companion.Mode.BOMB_MODE){
-            finishGame()
-        }
-    }
-
     fun finishGame(){
+        //stop the timer
+        gameState!!.stopTimer()
+        //get ready to go to game score
         val intent = Intent(this@Game, GameScore::class.java)
         intent.putExtra("score", gameState!!.score)
         startActivity(intent)
+        //close
         finish()
     }
-    override fun onDestroy() {
-        super.onDestroy()
-        gameState!!.stopTimer()
-    }
-
 
 
 }
