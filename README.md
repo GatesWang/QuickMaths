@@ -9,7 +9,7 @@ app to help kids learn math
 
 ![alt text](https://i.imgur.com/QjEq1Ql.jpg)
 
-![alt text[(https://i.imgur.com/ah02dZ9.jpg)
+![alt text](https://i.imgur.com/ah02dZ9.jpg)
 
 ![alt text](https://i.imgur.com/Eedj59g.jpg)
 
